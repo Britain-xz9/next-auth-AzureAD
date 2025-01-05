@@ -18,7 +18,6 @@ export const authOptions: NextAuthOptions = {
       tenantId,
     }),
   ],
-  debug: true,
 };
 
 const handler = NextAuth(authOptions);
