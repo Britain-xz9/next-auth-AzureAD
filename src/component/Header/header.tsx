@@ -19,7 +19,7 @@ export default function Header() {
             !session && loading ? styles.loading : styles.loaded
           }`}
         >
-          {!session && (
+          {!session && ( // signin
             <>
               <span className={styles.notSignedInText}>
                 You are not signed in
@@ -29,14 +29,16 @@ export default function Header() {
                 className={styles.buttonPrimary}
                 onClick={(e) => {
                   e.preventDefault();
-                  signIn();
+                  signIn("azure-ad", {
+                    callbackUrl: "http://localhost:3000", // change this
+                  });
                 }}
               >
-                Sign in
+                Sign in with Microsoft Account
               </a>
             </>
           )}
-          {session?.user && (
+          {session?.user && ( // signout
             <>
               {session.user.image && (
                 <span
@@ -64,6 +66,7 @@ export default function Header() {
           )}
         </p>
       </div>
+
       <nav>
         <ul className={styles.navItems}>
           <li className={styles.navItem}>
